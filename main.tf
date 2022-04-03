@@ -11,12 +11,13 @@ provider "docker" {
 }
 
 resource "docker_container" "hello-world-app" {
-    image = "hello-world-app:latest"
-    name = "hello_world_app_container"
+    image = var.image
+    name = "Container"
     restart = "always"
     ports {
-        internal = 80
-        external = 8081
+        internal = var.internal_port
+        external = var.external_port
+        ip = var.ip_address
     }
     volumes {
         container_path = "/usr/share/nginx/html/"

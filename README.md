@@ -13,10 +13,10 @@ To check how the project works start with cloning this repository by opening a t
 It is important to clone this repo to one of the project directory and to execute all the other steps in this certain directory.
 
 Then the docker image should be created. 
-The first option is to use an image provided in a link above
+The first option is to use an image provided in a hyperlink above
 The second option is to build an image from the Dockerfile provided in this repo by typing:
 
-    docker build -t [image tag]
+    docker build -t [image tag] .
 
 for example: 
 

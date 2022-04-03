@@ -46,7 +46,14 @@ type:
 
 and then confirm the action by typing 'yes'
 
-Now you can open your web browser and type: localhost:8081 or 127.0.0.1:8081.
+Now you can open your web browser and type: 
+
+    localhost:8081 
+
+or 
+
+    127.0.0.1:8081
+
 You should see 'This is a simple Hello world project'.
 
 You can also type:

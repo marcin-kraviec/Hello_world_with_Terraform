@@ -6,13 +6,13 @@ terraform{
         }
     }
 }
-provider "docker" {
+provider "docker" {   
     host    = "npipe:////.//pipe//docker_engine"
 }
 
 resource "docker_container" "image" {
     image = var.image
-    name = "Container"
+    name = var.name
     restart = "always"
     ports {
         internal = 80
@@ -21,8 +21,7 @@ resource "docker_container" "image" {
     }
     volumes {
         container_path = "/usr/share/nginx/html/"
-        # host_path should be replaced with the location of the folder with a project on the host machine
-        host_path = "C:\\Users\\Marcin\\Projects\\VirtusLab"
+        host_path = var.host_path
         read_only = true
     }  
 }

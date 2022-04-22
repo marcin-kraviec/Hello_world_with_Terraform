@@ -3,10 +3,10 @@
 
 This repo provides terraform module for running a basic dockerized application on local machine.
 The aim is to run a web app serving a static HTML page that can be found in index.html file.
-Very basic Dockerfile was created, that allowed to create an image can can be found [here](https://hub.docker.com/repository/docker/marcinkraviec/hello-world-app)
+Very basic Dockerfile was created, that allowed to create an image that can be found [here](https://hub.docker.com/repository/docker/marcinkraviec/hello-world-app)
 
-Terraform module accepts input variables: Docker image, host machine port, ip address.
-To check how the project works start with cloning this repository by opening a terminal and typing:
+Terraform module accepts input variables: Docker image, container name, container path, host path, host machine port, ip address.
+To check how this basic project works start with cloning this repository by opening a terminal and typing:
 
     git clone https://github.com/marcin-kraviec/Hello_world_with_Terraform.git
 
@@ -30,29 +30,38 @@ Then the configuration should be checked by typing:
 
     terraform plan
 
+The host_path is an obligatory variable an you will be asked to provide it
+
 If both operations executed without any problems the module is ready to be run. 
 
 To run the module with default values which are:
     
     image: "hello-world-app:latest"
     
-    external_port: 8081
-    
-    ip_address: "127.0.0.1" (localhost)
+    name: "container"
 
+    container_path: "/usr/share/nginx/html/"
+    
+    external_port: 8080
+    
+    ip_address: "127.0.0.1"
+
+The host_path is an obligatory variable
+   
 type:
 
-    terraform apply 
+    terraform apply
 
-and then confirm the action by typing 'yes'
+Then provide the host path and then confirm the action by typing 'yes'
+
 
 Now you can open your web browser and type: 
 
-    localhost:8081 
+    localhost:8080 
 
 or 
 
-    127.0.0.1:8081
+    127.0.0.1:8080
 
 You should see 'This is a simple Hello world project'.
 
@@ -66,7 +75,11 @@ If you would like to run a module with other values that differ from the default
 
     terraform apply -var="image=[image name]" 
 
+    terraform apply -var="name=[name]" 
+
     terraform apply -var="external_port=[port number]"
+
+    terraform apply -var="container_path=[container_path]" 
 
     terraform apply -var="ip_address=[ip address]"
 
@@ -78,6 +91,3 @@ Here are some examples of running modules with different variables:
 
     terraform apply -var="external_port=6500" -var="image=hello-world-app:1.0"
 
-There are other containarisation solutions that can be use to build and run cointainers. Hyber-V containers are an example.
-Ansible can be considered as other Infrastracture as a Code solusion.
-A great advantage od Terraform is that it can work with different cloud providers. It also uses quite simple language - HCL
